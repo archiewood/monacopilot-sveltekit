@@ -19,4 +19,14 @@ export default defineConfig({
 			},
 		},
 	},
+	ssr: {
+		noExternal: ['monaco-editor']
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				additionalData: `@import "monaco-editor/esm/vs/editor/standalone/browser/standalone-tokens.css";`
+			}
+		}
+	}
 });

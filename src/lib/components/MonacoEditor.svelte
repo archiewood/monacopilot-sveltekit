@@ -1,45 +1,65 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import * as monaco from 'monaco-editor';
+  import { onMount, onDestroy } from 'svelte';
+  import { browser } from '$app/environment';
   import loader from '@monaco-editor/loader';
+  import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
   
-  export let value = '// Type your code here\n';
-  export let language = 'javascript';
+  export let value = '# Type your code here\n';
+  export let language = 'markdown';
   export let theme: 'vs-dark' | 'vs-light' | 'hc-black' = 'vs-dark';
   export let height = '500px';
   
-  let editorContainer: HTMLElement;
-  let editor: monaco.editor.IStandaloneCodeEditor;
+  let container: HTMLElement;
+  let editor: Monaco.editor.IStandaloneCodeEditor;
+  let monaco: typeof Monaco;
+
+  // Create a singleton to persist across hot reloads
+  const EditorState = {
+    isInitialized: false
+  };
 
   onMount(() => {
-    // Configure Monaco loader
-    loader.config({ monaco });
+    if (!browser) return;
     
-    // Initialize editor
-    editor = monaco.editor.create(editorContainer, {
-      value,
-      language,
-      theme,
-      minimap: { enabled: false },
-      automaticLayout: true,
-      fontSize: 14,
-      lineNumbers: 'on',
-      roundedSelection: false,
-      scrollBeyondLastLine: false,
-      readOnly: false,
-      cursorStyle: 'line',
-      tabSize: 2,
-      insertSpaces: true,
-    });
+    const initEditor = async () => {
+      if (EditorState.isInitialized) return;
+      
+      monaco = await loader.init();
+      
+      // Initialize editor
+      editor = monaco.editor.create(container, {
+        value,
+        language,
+        theme,
+        minimap: { enabled: false },
+        automaticLayout: true,
+        fontSize: 14,
+        lineNumbers: 'on',
+        roundedSelection: false,
+        scrollBeyondLastLine: false,
+        readOnly: false,
+        cursorStyle: 'line',
+        tabSize: 2,
+        insertSpaces: true,
+      });
 
-    return () => {
-      editor.dispose();
+      EditorState.isInitialized = true;
     };
+
+    initEditor();
+  });
+
+  onDestroy(() => {
+    if (editor) {
+      editor.dispose();
+    }
   });
 </script>
 
-<div 
-  class="w-full rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm"
-  style="height: {height};"
-  bind:this={editorContainer}
-></div> 
+{#if browser}
+  <div 
+    class="w-full rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm"
+    style="height: {height};"
+    bind:this={container}
+  ></div>
+{/if} 
