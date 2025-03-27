@@ -3,6 +3,6 @@
 </script>
 
 <MonacoEditor 
-language="markdown"
-theme="vs-light"
+  language="markdown"
+  theme="vs-light"
 />
