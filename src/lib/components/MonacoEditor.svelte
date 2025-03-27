@@ -8,10 +8,14 @@
   export let language = 'markdown';
   export let theme: 'vs-dark' | 'vs-light' | 'hc-black' = 'vs-dark';
   export let height = '500px';
+  import {registerCompletion, type CompletionRegistration} from 'monacopilot';
+
   
   let container: HTMLElement;
   let editor: Monaco.editor.IStandaloneCodeEditor;
   let monaco: typeof Monaco;
+  let completionRegistration: CompletionRegistration | null = null;
+
 
   // Create a singleton to persist across hot reloads
   const EditorState = {
@@ -44,6 +48,11 @@
       });
 
       EditorState.isInitialized = true;
+
+      completionRegistration = registerCompletion(monaco, editor, {
+        endpoint: '/api/code-completion',
+        language: 'markdown',
+      });
     };
 
     initEditor();
