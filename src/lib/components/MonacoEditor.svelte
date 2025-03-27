@@ -65,10 +65,9 @@
   });
 </script>
 
-{#if browser}
+
   <div 
     class="w-full rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm"
     style="height: {height};"
     bind:this={container}
   ></div>
-{/if} 
