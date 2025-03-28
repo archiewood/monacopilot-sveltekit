@@ -11,6 +11,7 @@
     height = '500px',
     includeTables = true,
     includeComponents = true,
+    debounceDelay = 200,
     onCompletion
   } = $props<{
     value?: string;
@@ -19,6 +20,7 @@
     height?: string;
     includeTables?: boolean;
     includeComponents?: boolean;
+    debounceDelay?: number;
     onCompletion?: (result: { promise: Promise<{ completion: string | null; timing: { totalServerTime: number; mistralApiTime: number }; metrics: { prefixLength: number; suffixLength: number; completionLength: number } }> }) => void;
   }>();
   
@@ -26,11 +28,23 @@
   let editor: Monaco.editor.IStandaloneCodeEditor;
   let monaco: typeof Monaco;
   let inlineCompletionsDisposable: Monaco.IDisposable | null = null;
+  let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   // Create a singleton to persist across hot reloads
   const EditorState = {
     isInitialized: false
   };
+
+  function debounce<T extends [Monaco.Position, string]>(fn: (...args: T) => Promise<string | null>, delay: number) {
+    return (...args: T) => {
+      return new Promise<string | null>((resolve) => {
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          fn(...args).then(resolve);
+        }, delay);
+      });
+    };
+  }
 
   async function getCompletion(position: Monaco.Position, text: string): Promise<string | null> {
     const requestPromise = fetch('/api/code-completion', {
@@ -61,6 +75,8 @@
     }
   }
 
+  let debouncedGetCompletion = $derived(debounce(getCompletion, debounceDelay));
+
   onMount(() => {
     if (!browser) return;
     
@@ -73,7 +89,7 @@
       inlineCompletionsDisposable = monaco.languages.registerInlineCompletionsProvider(language, {
         provideInlineCompletions(model, position, context, token) {
           return new Promise((resolve) => {
-            getCompletion(position, model.getValue()).then(completion => {
+            debouncedGetCompletion(position, model.getValue()).then(completion => {
               if (!completion) {
                 resolve({ items: [] });
                 return;
@@ -125,6 +141,7 @@
   });
 
   onDestroy(() => {
+    if (debounceTimer) clearTimeout(debounceTimer);
     if (inlineCompletionsDisposable) {
       inlineCompletionsDisposable.dispose();
     }
