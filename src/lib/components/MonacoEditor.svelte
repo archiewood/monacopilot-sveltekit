@@ -12,6 +12,7 @@
     includeTables = true,
     includeComponents = true,
     debounceDelay = 200,
+    model = 'mistral',
     onCompletion
   } = $props<{
     value?: string;
@@ -21,7 +22,8 @@
     includeTables?: boolean;
     includeComponents?: boolean;
     debounceDelay?: number;
-    onCompletion?: (result: { promise: Promise<{ completion: string | null; timing: { totalServerTime: number; mistralApiTime: number }; metrics: { prefixLength: number; suffixLength: number; completionLength: number } }> }) => void;
+    model?: string;
+    onCompletion?: (result: { promise: Promise<{ completion: string | null; timing: { totalServerTime: number; apiTime: number }; metrics: { prefixLength: number; suffixLength: number; completionLength: number; model: string } }> }) => void;
   }>();
   
   let container: HTMLElement;
@@ -60,6 +62,7 @@
         text,
         includeTables,
         includeComponents,
+        model
       }),
     }).then(r => r.json());
 
