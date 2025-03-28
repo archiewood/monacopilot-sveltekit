@@ -1,5 +1,6 @@
 <script lang="ts">
   import MonacoEditor from '$lib/components/MonacoEditor.svelte';
+  import LatencyChart from '$lib/components/LatencyChart.svelte';
   let includeTables = $state(true);
   let includeComponents = $state(true);
   
@@ -26,6 +27,11 @@
     timestamp: Date;
   }>>([]);
 
+  let chartData = $derived(requestHistory.map(request => ({
+    contextSize: request.metrics.prefixLength + request.metrics.suffixLength,
+    latency: request.totalTime
+  })));
+
   function handleCompletion(event: { promise: Promise<{ completion: string | null; timing: { totalServerTime: number; mistralApiTime: number }; metrics: { prefixLength: number; suffixLength: number; completionLength: number } }> }) {
     const requestStart = Date.now();
     console.log('🚀 Starting completion request from client...');
@@ -49,14 +55,14 @@
 
       // Add to history, keeping only last 10
       requestHistory = [
+        ...requestHistory,
         {
           totalTime,
           serverTime: result.timing.totalServerTime,
           mistralApiTime: result.timing.mistralApiTime,
           metrics: result.metrics,
           timestamp: new Date()
-        },
-        ...requestHistory.slice(0, 9)
+        }
       ];
     }).catch((error) => {
       console.error('❌ Completion request failed:', error);
@@ -68,7 +74,7 @@
 <h1 class="text-2xl font-bold mb-4">Monaco + Mistral Completion</h1>
 
 <div class="m-4">
-  <div class="flex  flex-col gap-4">
+  <div class="flex flex-col gap-4">
     <label class="flex items-center cursor-pointer">
       <input type="checkbox" bind:checked={includeTables} class="sr-only peer">
       <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
@@ -82,14 +88,18 @@
   </div>
 </div>
 
-<MonacoEditor 
-  language="markdown"
-  theme="vs-light"
-  height="400px"
-  {includeTables}
-  {includeComponents}
-  onCompletion={handleCompletion}
-/>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+  <MonacoEditor 
+    language="markdown"
+    theme="vs-light"
+    height="400px"
+    {includeTables}
+    {includeComponents}
+    onCompletion={handleCompletion}
+  />
+  
+  <LatencyChart data={chartData} />
+</div>
 
 {#if requestHistory.length > 0}
   <div class="mt-4 p-4 bg-gray-50 rounded-lg">
