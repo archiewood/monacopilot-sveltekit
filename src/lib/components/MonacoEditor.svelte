@@ -5,7 +5,7 @@
   import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
   
   let { 
-    value = '# Type your code here\n',
+    value = '# Analytics Report\n\nMonthly sales for March\n',
     language = 'markdown',
     theme = 'vs-dark' as 'vs-dark' | 'vs-light' | 'hc-black',
     height = '500px',

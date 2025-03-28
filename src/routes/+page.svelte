@@ -33,6 +33,39 @@
     timestamp: Date;
   }>>([]);
 
+  // Calculate bucketed data for the chart
+  let bucketedData = $derived((() => {
+    const bucketSize = 1000; // Size of each bucket in characters
+    const buckets = new Map<string, Map<string, number[]>>();
+    
+    // Group data by bucket and model
+    requestHistory
+      .filter(request => request.metrics.completionLength > 0)
+      .forEach(request => {
+        const contextSize = request.metrics.prefixLength + request.metrics.suffixLength;
+        const bucket = Math.floor(contextSize / bucketSize) * bucketSize;
+        const bucketKey = `${bucket}`;
+        const model = request.metrics.model;
+        
+        if (!buckets.has(bucketKey)) {
+          buckets.set(bucketKey, new Map());
+        }
+        
+        const modelData = buckets.get(bucketKey)!.get(model) || [];
+        modelData.push(request.totalTime);
+        buckets.get(bucketKey)!.set(model, modelData);
+      });
+    
+    // Convert to array format for the chart
+    return Array.from(buckets.entries()).flatMap(([bucket, modelData]) => 
+      Array.from(modelData.entries()).map(([model, latencies]) => ({
+        contextSize: parseInt(bucket),
+        model,
+        latency: latencies.reduce((a, b) => a + b, 0) / latencies.length
+      }))
+    );
+  })());
+
   let chartData = $derived(requestHistory
     .filter(request => request.metrics.completionLength > 0)
     .map(request => ({
@@ -130,7 +163,7 @@
     onCompletion={handleCompletion}
   />
   
-  <LatencyChart data={chartData} />
+  <LatencyChart data={chartData} bucketedData={bucketedData} />
 </div>
 
 {#if requestHistory.length > 0}
@@ -159,6 +192,33 @@
               <td class="p-2 border-b border-gray-200">{request.totalTime - request.serverTime}</td>
               <td class="p-2 border-b border-gray-200">{request.metrics.prefixLength + request.metrics.suffixLength}</td>
               <td class="p-2 border-b border-gray-200">{request.metrics.completionLength}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{/if}
+
+<!-- latency table -->
+{#if bucketedData.length > 0}
+  <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+    <h3 class="text-lg font-semibold mb-2">Latency by Context Size</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr>
+            <th class="p-2 text-left border-b border-gray-200 bg-gray-100">Context Size</th>
+            <th class="p-2 text-left border-b border-gray-200 bg-gray-100">Latency</th>
+            <th class="p-2 text-left border-b border-gray-200 bg-gray-100">Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each bucketedData as row}
+            <tr>
+              <td class="p-2 border-b border-gray-200">{row.contextSize}</td>
+              <td class="p-2 border-b border-gray-200">{row.latency.toFixed(1)}</td>
+              <td class="p-2 border-b border-gray-200">{row.model}</td>
             </tr>
           {/each}
         </tbody>

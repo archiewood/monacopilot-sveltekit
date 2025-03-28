@@ -2,8 +2,13 @@
   import { onMount } from 'svelte';
   import * as echarts from 'echarts';
   
-  const { data = [] } = $props<{
+  const { data = [], bucketedData = [] } = $props<{
     data: Array<{
+      contextSize: number;
+      latency: number;
+      model: string;
+    }>;
+    bucketedData: Array<{
       contextSize: number;
       latency: number;
       model: string;
@@ -44,7 +49,7 @@
           }
         },
         legend: {
-          data: models,
+          data: models.map(model => [model, `${model} (avg)`]),
           top: 30
         },
         grid: {
@@ -64,17 +69,35 @@
           nameLocation: 'middle',
           nameGap: 40
         },
-        series: models.map(model => ({
-          name: model,
-          type: 'scatter',
-          data: data
-            .filter((d: { model: string }) => d.model === model)
-            .map((d: { contextSize: number; latency: number }) => [d.contextSize, d.latency]),
-          symbolSize: 8,
-          itemStyle: {
-            color: modelColors[model] || '#3b82f6'
-          }
-        }))
+        series: [
+          // Raw data scatter points
+          ...models.map(model => ({
+            name: model,
+            type: 'scatter',
+            data: data
+              .filter((d: { model: string }) => d.model === model)
+              .map((d: { contextSize: number; latency: number }) => [d.contextSize, d.latency]),
+            symbolSize: 6,
+            itemStyle: {
+              color: modelColors[model] || '#3b82f6'
+            }
+          })),
+          // Bucketed data scatter points
+          ...models.map(model => ({
+            name: `${model} (avg)`,
+            type: 'scatter',
+            data: bucketedData
+              .filter((d: { model: string }) => d.model === model)
+              .map((d: { contextSize: number; latency: number }) => [d.contextSize, d.latency]),
+            symbolSize: 16,
+            symbol: 'line',
+            itemStyle: {
+              color: modelColors[model] || '#3b82f6',
+              borderWidth: 2,
+              borderColor: '#fff'
+            }
+          }))
+        ]
       };
       console.log('Setting options:', options);
       currentOptions = options;
@@ -106,13 +129,3 @@
 </script>
 
 <div bind:this={chartElement} class="w-full h-[400px] border border-gray-200 p-2"></div>
-
-<!-- <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-  <h3 class="text-sm font-mono mb-2">Chart Options:</h3>
-  <pre class="text-xs overflow-auto">{JSON.stringify(currentOptions, null, 2)}</pre>
-  <div class="mt-2 text-xs text-gray-500">
-    Chart initialized: {initialized ? 'Yes' : 'No'}<br>
-    Chart exists: {!!chart ? 'Yes' : 'No'}<br>
-    Data points: {data.length}
-  </div>
-</div>  -->

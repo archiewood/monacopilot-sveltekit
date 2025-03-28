@@ -33,7 +33,7 @@ ${prefix}
 SUFFIX:
 ${suffix}`
             }],
-            max_tokens: 200,
+            max_tokens: 50,
             temperature: 0
         }),
     });
@@ -58,7 +58,7 @@ async function callMistral(prefix: string, suffix: string) {
             model: 'codestral-latest',
             prompt: prefix,
             suffix: suffix,
-            max_tokens: 200,
+            max_tokens: 50,
             temperature: 0
         }),
     });
