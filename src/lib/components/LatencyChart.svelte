@@ -49,7 +49,7 @@
           }
         },
         legend: {
-          data: models.map(model => [model, `${model} (avg)`]),
+          data: models,
           top: 30
         },
         grid: {
@@ -84,7 +84,7 @@
           })),
           // Bucketed data scatter points
           ...models.map(model => ({
-            name: `${model} (avg)`,
+            name: `${model} (median)`,
             type: 'scatter',
             data: bucketedData
               .filter((d: { model: string }) => d.model === model)
