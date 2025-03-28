@@ -56,12 +56,22 @@
         buckets.get(bucketKey)!.set(model, modelData);
       });
     
+    // Helper function to calculate median
+    const median = (arr: number[]) => {
+      const sorted = [...arr].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      if (sorted.length % 2 === 0) {
+        return (sorted[mid - 1] + sorted[mid]) / 2;
+      }
+      return sorted[mid];
+    };
+    
     // Convert to array format for the chart
     return Array.from(buckets.entries()).flatMap(([bucket, modelData]) => 
       Array.from(modelData.entries()).map(([model, latencies]) => ({
         contextSize: parseInt(bucket),
         model,
-        latency: latencies.reduce((a, b) => a + b, 0) / latencies.length
+        latency: median(latencies)
       }))
     );
   })());
