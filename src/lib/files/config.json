@@ -1,0 +1,1283 @@
+{
+    "area_chart": {
+        "render": "area_chart",
+        "selfClosing": true,
+        "description": "Display a area chart",
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 3,
+            "minWidth": 300
+        },
+        "attributes": {
+            "data": {
+                "required": true,
+                "description": "Name of the table to query",
+                "suggestionType": "table"
+            },
+            "filters": {
+                "required": false,
+                "default": [],
+                "description": "Array of column names to use as filters",
+                "suggestionType": "filter"
+            },
+            "x": {
+                "required": true,
+                "description": "Column name for x-axis",
+                "suggestionType": "column"
+            },
+            "y": {
+                "required": true,
+                "description": "Column name for y-axis",
+                "suggestionType": "column"
+            },
+            "series": {
+                "required": false,
+                "description": "Column name for series",
+                "suggestionType": "column"
+            },
+            "size": {
+                "required": false,
+                "description": "Column name for size",
+                "suggestionType": "column"
+            },
+            "title": {
+                "required": false,
+                "description": "Title to display above the chart"
+            },
+            "subtitle": {
+                "required": false,
+                "description": "Subtitle to display below the title"
+            },
+            "x_label_wrap": {
+                "required": false,
+                "default": false,
+                "description": "Wrap x-axis labels"
+            },
+            "time_grain": {
+                "required": false,
+                "matches": [
+                    "day",
+                    "week",
+                    "month",
+                    "quarter",
+                    "year"
+                ],
+                "default": "day",
+                "description": "Time grain for date truncation (default: day for date columns)"
+            },
+            "agg": {
+                "required": false,
+                "matches": [
+                    "sum",
+                    "avg",
+                    "mean",
+                    "max",
+                    "min",
+                    "count",
+                    "count_distinct"
+                ],
+                "description": "Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)"
+            },
+            "y_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for y-axis values"
+            },
+            "x_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for x-axis values"
+            },
+            "echarts_options": {
+                "required": false,
+                "description": "ECharts configuration options",
+                "default": {}
+            },
+            "renderer": {
+                "required": false,
+                "default": "canvas",
+                "matches": [
+                    "canvas",
+                    "svg"
+                ],
+                "description": "Renderer to use for the chart"
+            },
+            "order": {
+                "required": false,
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "suggestionType": "column"
+            },
+            "stretch": {
+                "required": false,
+                "default": false,
+                "description": "Stretches the chart area to fill all available space when a chart is placed next to a taller chart"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the area_chart on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 3,
+                "description": "Height (in rows) of the area_chart on the page grid"
+            }
+        }
+    },
+    "bar_chart": {
+        "render": "bar_chart",
+        "selfClosing": true,
+        "description": "Display a bar chart",
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 3,
+            "minWidth": 300
+        },
+        "attributes": {
+            "data": {
+                "required": true,
+                "description": "Name of the table to query",
+                "suggestionType": "table"
+            },
+            "filters": {
+                "required": false,
+                "default": [],
+                "description": "Array of column names to use as filters",
+                "suggestionType": "filter"
+            },
+            "x": {
+                "required": true,
+                "description": "Column name for x-axis",
+                "suggestionType": "column"
+            },
+            "y": {
+                "required": true,
+                "description": "Column name for y-axis",
+                "suggestionType": "column"
+            },
+            "series": {
+                "required": false,
+                "description": "Column name for series",
+                "suggestionType": "column"
+            },
+            "size": {
+                "required": false,
+                "description": "Column name for size",
+                "suggestionType": "column"
+            },
+            "title": {
+                "required": false,
+                "description": "Title to display above the chart"
+            },
+            "subtitle": {
+                "required": false,
+                "description": "Subtitle to display below the title"
+            },
+            "x_label_wrap": {
+                "required": false,
+                "default": false,
+                "description": "Wrap x-axis labels"
+            },
+            "time_grain": {
+                "required": false,
+                "matches": [
+                    "day",
+                    "week",
+                    "month",
+                    "quarter",
+                    "year"
+                ],
+                "default": "day",
+                "description": "Time grain for date truncation (default: day for date columns)"
+            },
+            "agg": {
+                "required": false,
+                "matches": [
+                    "sum",
+                    "avg",
+                    "mean",
+                    "max",
+                    "min",
+                    "count",
+                    "count_distinct"
+                ],
+                "description": "Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)"
+            },
+            "y_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for y-axis values"
+            },
+            "x_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for x-axis values"
+            },
+            "echarts_options": {
+                "required": false,
+                "description": "ECharts configuration options",
+                "default": {}
+            },
+            "renderer": {
+                "required": false,
+                "default": "canvas",
+                "matches": [
+                    "canvas",
+                    "svg"
+                ],
+                "description": "Renderer to use for the chart"
+            },
+            "order": {
+                "required": false,
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "suggestionType": "column"
+            },
+            "stretch": {
+                "required": false,
+                "default": false,
+                "description": "Stretches the chart area to fill all available space when a chart is placed next to a taller chart"
+            },
+            "stacked": {
+                "required": false,
+                "default": true,
+                "description": "Whether to stack the bars"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the bar_chart on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 3,
+                "description": "Height (in rows) of the bar_chart on the page grid"
+            }
+        }
+    },
+    "bubble_chart": {
+        "render": "bubble_chart",
+        "selfClosing": true,
+        "description": "Display a bubble chart",
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 3,
+            "minWidth": 300
+        },
+        "attributes": {
+            "data": {
+                "required": true,
+                "description": "Name of the table to query",
+                "suggestionType": "table"
+            },
+            "filters": {
+                "required": false,
+                "default": [],
+                "description": "Array of column names to use as filters",
+                "suggestionType": "filter"
+            },
+            "x": {
+                "required": true,
+                "description": "Column name for x-axis",
+                "suggestionType": "column"
+            },
+            "y": {
+                "required": true,
+                "description": "Column name for y-axis",
+                "suggestionType": "column"
+            },
+            "series": {
+                "required": false,
+                "description": "Column name for series",
+                "suggestionType": "column"
+            },
+            "size": {
+                "type": "String",
+                "required": true,
+                "description": "Column to use for the size of the bubbles",
+                "suggestionType": "column"
+            },
+            "title": {
+                "required": false,
+                "description": "Title to display above the chart"
+            },
+            "subtitle": {
+                "required": false,
+                "description": "Subtitle to display below the title"
+            },
+            "x_label_wrap": {
+                "required": false,
+                "default": false,
+                "description": "Wrap x-axis labels"
+            },
+            "time_grain": {
+                "required": false,
+                "matches": [
+                    "day",
+                    "week",
+                    "month",
+                    "quarter",
+                    "year"
+                ],
+                "default": "day",
+                "description": "Time grain for date truncation (default: day for date columns)"
+            },
+            "agg": {
+                "required": false,
+                "matches": [
+                    "sum",
+                    "avg",
+                    "mean",
+                    "max",
+                    "min",
+                    "count",
+                    "count_distinct"
+                ],
+                "description": "Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)"
+            },
+            "y_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for y-axis values"
+            },
+            "x_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for x-axis values"
+            },
+            "echarts_options": {
+                "required": false,
+                "description": "ECharts configuration options",
+                "default": {}
+            },
+            "renderer": {
+                "required": false,
+                "default": "canvas",
+                "matches": [
+                    "canvas",
+                    "svg"
+                ],
+                "description": "Renderer to use for the chart"
+            },
+            "order": {
+                "required": false,
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "suggestionType": "column"
+            },
+            "stretch": {
+                "required": false,
+                "default": false,
+                "description": "Stretches the chart area to fill all available space when a chart is placed next to a taller chart"
+            },
+            "opacity": {
+                "type": "Number",
+                "required": false,
+                "default": 0.7,
+                "description": "The opacity of the series"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the bubble_chart on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 3,
+                "description": "Height (in rows) of the bubble_chart on the page grid"
+            }
+        }
+    },
+    "callout": {
+        "render": "callout",
+        "selfClosing": false,
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 1
+        },
+        "attributes": {
+            "type": {
+                "default": "info",
+                "matches": [
+                    "info",
+                    "warning",
+                    "error"
+                ],
+                "errorLevel": "error"
+            },
+            "title": {
+                "default": ""
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the callout on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 1,
+                "description": "Height (in rows) of the callout on the page grid"
+            }
+        }
+    },
+    "chart": {
+        "render": "chart",
+        "selfClosing": true,
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 3,
+            "minWidth": 300
+        },
+        "description": "Display a chart",
+        "attributes": {
+            "data": {
+                "required": true,
+                "description": "Name of the table to query",
+                "suggestionType": "table"
+            },
+            "filters": {
+                "required": false,
+                "default": [],
+                "description": "Array of column names to use as filters",
+                "suggestionType": "filter"
+            },
+            "x": {
+                "required": true,
+                "description": "Column name for x-axis",
+                "suggestionType": "column"
+            },
+            "y": {
+                "required": true,
+                "description": "Column name for y-axis",
+                "suggestionType": "column"
+            },
+            "series": {
+                "required": false,
+                "description": "Column name for series",
+                "suggestionType": "column"
+            },
+            "size": {
+                "required": false,
+                "description": "Column name for size",
+                "suggestionType": "column"
+            },
+            "title": {
+                "required": false,
+                "description": "Title to display above the chart"
+            },
+            "subtitle": {
+                "required": false,
+                "description": "Subtitle to display below the title"
+            },
+            "type": {
+                "required": false,
+                "default": "line",
+                "matches": [
+                    "line",
+                    "bar",
+                    "area",
+                    "scatter"
+                ],
+                "description": "Type of chart to display"
+            },
+            "x_label_wrap": {
+                "required": false,
+                "default": false,
+                "description": "Wrap x-axis labels"
+            },
+            "time_grain": {
+                "required": false,
+                "matches": [
+                    "day",
+                    "week",
+                    "month",
+                    "quarter",
+                    "year"
+                ],
+                "default": "day",
+                "description": "Time grain for date truncation (default: day for date columns)"
+            },
+            "agg": {
+                "required": false,
+                "matches": [
+                    "sum",
+                    "avg",
+                    "mean",
+                    "max",
+                    "min",
+                    "count",
+                    "count_distinct"
+                ],
+                "description": "Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)"
+            },
+            "y_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for y-axis values"
+            },
+            "x_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for x-axis values"
+            },
+            "echarts_options": {
+                "required": false,
+                "description": "ECharts configuration options",
+                "default": {}
+            },
+            "renderer": {
+                "required": false,
+                "default": "canvas",
+                "matches": [
+                    "canvas",
+                    "svg"
+                ],
+                "description": "Renderer to use for the chart"
+            },
+            "order": {
+                "required": false,
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "suggestionType": "column"
+            },
+            "stretch": {
+                "required": false,
+                "default": false,
+                "description": "Stretches the chart area to fill all available space when a chart is placed next to a taller chart"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the chart on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 3,
+                "description": "Height (in rows) of the chart on the page grid"
+            }
+        }
+    },
+    "delta": {
+        "render": "delta",
+        "selfClosing": true,
+        "isInline": true,
+        "description": "Display a delta value with an up/down indicator",
+        "attributes": {
+            "data": {
+                "required": true,
+                "suggestionType": "table",
+                "description": "Table or view to query"
+            },
+            "value": {
+                "required": true,
+                "description": "SQL expression to insert into the SELECT part of the query (e.g., \"COUNT(*)\", \"SUM(sales)\")",
+                "suggestionType": "column"
+            },
+            "className": {
+                "required": false,
+                "description": "CSS class to apply to the delta"
+            },
+            "fmt": {
+                "required": false,
+                "description": "Format code for the value (e.g., \"num\", \"usd\", \"pct\"). See formatValue documentation for available formats."
+            },
+            "text": {
+                "required": false,
+                "description": "Text appearing after the delta (e.g., vs. prev month)"
+            },
+            "chip": {
+                "required": false,
+                "default": false,
+                "description": "Whether to display as a chip"
+            },
+            "downIsGood": {
+                "required": false,
+                "default": false,
+                "description": "Whether a downward trend is considered positive"
+            },
+            "showValue": {
+                "required": false,
+                "default": true,
+                "description": "Whether to show the value"
+            },
+            "showSymbol": {
+                "required": false,
+                "default": true,
+                "description": "Whether to show the delta symbol"
+            },
+            "symbolPosition": {
+                "required": false,
+                "default": "right",
+                "matches": [
+                    "left",
+                    "right"
+                ],
+                "description": "Position of the delta symbol relative to the value"
+            },
+            "align": {
+                "required": false,
+                "default": "right",
+                "matches": [
+                    "left",
+                    "center",
+                    "right"
+                ],
+                "description": "Text alignment"
+            },
+            "neutralMin": {
+                "required": false,
+                "default": 0,
+                "description": "Minimum value to be considered neutral"
+            },
+            "neutralMax": {
+                "required": false,
+                "default": 0,
+                "description": "Maximum value to be considered neutral"
+            },
+            "filters": {
+                "required": false,
+                "description": "IDs of filters to apply to the query",
+                "suggestionType": "filter"
+            }
+        }
+    },
+    "dropdown": {
+        "render": "dropdown",
+        "description": "Display a dropdown with distinct values from a database column",
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": false,
+            "defaultWidth": 6,
+            "defaultHeight": 1
+        },
+        "attributes": {
+            "id": {
+                "description": "The id of the dropdown to be used in a `filters` prop",
+                "required": true
+            },
+            "data": {
+                "description": "Name of the table to query",
+                "required": false,
+                "suggested": true,
+                "suggestionType": "table"
+            },
+            "value_column": {
+                "description": "Column name to use as the value for each option, and the column to filter by when this dropdown's `id` is used in the `filters` prop of a chart",
+                "required": false,
+                "suggested": true,
+                "suggestionType": "column"
+            },
+            "label_column": {
+                "description": "Column name to use as the label for each option",
+                "required": false
+            },
+            "options": {
+                "description": "List of options to display in the dropdown",
+                "required": false
+            },
+            "title": {
+                "description": "Text displayed above the dropdown",
+                "required": false
+            },
+            "initial_value": {
+                "type": [
+                    null,
+                    null
+                ],
+                "description": "Initial selected value(s)",
+                "required": false
+            },
+            "placeholder": {
+                "description": "Placeholder text displayed when no value is selected",
+                "required": false
+            },
+            "search": {
+                "description": "Includes a search input within the dropdown menu",
+                "required": false,
+                "default": false
+            },
+            "multiple": {
+                "description": "Allows multiple selections",
+                "required": false,
+                "default": false
+            },
+            "clear": {
+                "description": "Includes a clear button to unselect the selected value(s)",
+                "required": false,
+                "default": true
+            },
+            "order": {
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "required": false,
+                "suggestionType": "column"
+            },
+            "width": {
+                "required": false,
+                "default": 6,
+                "description": "Width (in columns) of the dropdown on the page grid"
+            }
+        }
+    },
+    "dropdown_option": {
+        "render": "dropdown_option",
+        "description": "Add an option to a dropdown component",
+        "selfClosing": true,
+        "attributes": {
+            "value": {
+                "description": "Value of the option",
+                "required": true
+            },
+            "label": {
+                "description": "Label text displayed in the option",
+                "required": false
+            }
+        }
+    },
+    "echarts": {
+        "render": "echarts",
+        "selfClosing": true,
+        "description": "Display a custom chart using ECharts configuration options",
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 3,
+            "minWidth": 300
+        },
+        "attributes": {
+            "options": {
+                "required": true,
+                "description": "ECharts configuration options"
+            },
+            "renderer": {
+                "required": false,
+                "default": "canvas",
+                "matches": [
+                    "canvas",
+                    "svg"
+                ],
+                "description": "Renderer to use for the chart"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the echarts on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 3,
+                "description": "Height (in rows) of the echarts on the page grid"
+            }
+        }
+    },
+    "filter_bar": {
+        "render": "filter_bar",
+        "description": "Renders a floating bar of filters at the top or bottom of your page",
+        "selfClosing": false,
+        "noWrapper": true,
+        "attributes": {}
+    },
+    "info": {
+        "render": "info",
+        "selfClosing": false,
+        "description": "Display a value with type-appropriate styling",
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 1
+        },
+        "attributes": {
+            "className": {
+                "type": "String"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the info on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 1,
+                "description": "Height (in rows) of the info on the page grid"
+            }
+        }
+    },
+    "line_chart": {
+        "render": "line_chart",
+        "selfClosing": true,
+        "description": "Display a line chart",
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 3,
+            "minWidth": 300
+        },
+        "attributes": {
+            "data": {
+                "required": true,
+                "description": "Name of the table to query",
+                "suggestionType": "table"
+            },
+            "filters": {
+                "required": false,
+                "default": [],
+                "description": "Array of column names to use as filters",
+                "suggestionType": "filter"
+            },
+            "x": {
+                "required": true,
+                "description": "Column name for x-axis",
+                "suggestionType": "column"
+            },
+            "y": {
+                "required": true,
+                "description": "Column name for y-axis",
+                "suggestionType": "column"
+            },
+            "series": {
+                "required": false,
+                "description": "Column name for series",
+                "suggestionType": "column"
+            },
+            "size": {
+                "required": false,
+                "description": "Column name for size",
+                "suggestionType": "column"
+            },
+            "title": {
+                "required": false,
+                "description": "Title to display above the chart"
+            },
+            "subtitle": {
+                "required": false,
+                "description": "Subtitle to display below the title"
+            },
+            "x_label_wrap": {
+                "required": false,
+                "default": false,
+                "description": "Wrap x-axis labels"
+            },
+            "time_grain": {
+                "required": false,
+                "matches": [
+                    "day",
+                    "week",
+                    "month",
+                    "quarter",
+                    "year"
+                ],
+                "default": "day",
+                "description": "Time grain for date truncation (default: day for date columns)"
+            },
+            "agg": {
+                "required": false,
+                "matches": [
+                    "sum",
+                    "avg",
+                    "mean",
+                    "max",
+                    "min",
+                    "count",
+                    "count_distinct"
+                ],
+                "description": "Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)"
+            },
+            "y_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for y-axis values"
+            },
+            "x_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for x-axis values"
+            },
+            "echarts_options": {
+                "required": false,
+                "description": "ECharts configuration options",
+                "default": {}
+            },
+            "renderer": {
+                "required": false,
+                "default": "canvas",
+                "matches": [
+                    "canvas",
+                    "svg"
+                ],
+                "description": "Renderer to use for the chart"
+            },
+            "order": {
+                "required": false,
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "suggestionType": "column"
+            },
+            "stretch": {
+                "required": false,
+                "default": false,
+                "description": "Stretches the chart area to fill all available space when a chart is placed next to a taller chart"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the line_chart on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 3,
+                "description": "Height (in rows) of the line_chart on the page grid"
+            }
+        }
+    },
+    "repeat": {
+        "render": "repeat",
+        "description": "Repeats the children of this component once for each distinct value of a column",
+        "selfClosing": false,
+        "noWrapper": true,
+        "grid": {
+            "userCanChangeWidth": false,
+            "userCanChangeHeight": false
+        },
+        "attributes": {
+            "id": {
+                "required": true,
+                "description": "The id of this repeat component to be used in the `filters` prop of its children"
+            },
+            "data": {
+                "required": true,
+                "description": "The name of the table to query",
+                "suggestionType": "table"
+            },
+            "column": {
+                "required": true,
+                "description": "The name of the column within the `data` table to get distinct values",
+                "suggestionType": "column"
+            }
+        }
+    },
+    "scatter_chart": {
+        "render": "scatter_chart",
+        "selfClosing": true,
+        "description": "Display a scatter chart",
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 3,
+            "minWidth": 300
+        },
+        "attributes": {
+            "data": {
+                "required": true,
+                "description": "Name of the table to query",
+                "suggestionType": "table"
+            },
+            "filters": {
+                "required": false,
+                "default": [],
+                "description": "Array of column names to use as filters",
+                "suggestionType": "filter"
+            },
+            "x": {
+                "required": true,
+                "description": "Column name for x-axis",
+                "suggestionType": "column"
+            },
+            "y": {
+                "required": true,
+                "description": "Column name for y-axis",
+                "suggestionType": "column"
+            },
+            "series": {
+                "required": false,
+                "description": "Column name for series",
+                "suggestionType": "column"
+            },
+            "size": {
+                "required": false,
+                "description": "Column name for size",
+                "suggestionType": "column"
+            },
+            "title": {
+                "required": false,
+                "description": "Title to display above the chart"
+            },
+            "subtitle": {
+                "required": false,
+                "description": "Subtitle to display below the title"
+            },
+            "x_label_wrap": {
+                "required": false,
+                "default": false,
+                "description": "Wrap x-axis labels"
+            },
+            "time_grain": {
+                "required": false,
+                "matches": [
+                    "day",
+                    "week",
+                    "month",
+                    "quarter",
+                    "year"
+                ],
+                "default": "day",
+                "description": "Time grain for date truncation (default: day for date columns)"
+            },
+            "agg": {
+                "required": false,
+                "matches": [
+                    "sum",
+                    "avg",
+                    "mean",
+                    "max",
+                    "min",
+                    "count",
+                    "count_distinct"
+                ],
+                "description": "Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)"
+            },
+            "y_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for y-axis values"
+            },
+            "x_fmt": {
+                "required": false,
+                "default": "num",
+                "description": "Format for x-axis values"
+            },
+            "echarts_options": {
+                "required": false,
+                "description": "ECharts configuration options",
+                "default": {}
+            },
+            "renderer": {
+                "required": false,
+                "default": "canvas",
+                "matches": [
+                    "canvas",
+                    "svg"
+                ],
+                "description": "Renderer to use for the chart"
+            },
+            "order": {
+                "required": false,
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "suggestionType": "column"
+            },
+            "stretch": {
+                "required": false,
+                "default": false,
+                "description": "Stretches the chart area to fill all available space when a chart is placed next to a taller chart"
+            },
+            "opacity": {
+                "required": false,
+                "default": 0.7,
+                "description": "The opacity of the series"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the scatter_chart on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 3,
+                "description": "Height (in rows) of the scatter_chart on the page grid"
+            }
+        }
+    },
+    "sparkline": {
+        "render": "sparkline",
+        "selfClosing": true,
+        "isInline": true,
+        "description": "Display a small inline sparkline chart",
+        "attributes": {
+            "data": {
+                "required": true,
+                "suggestionType": "table",
+                "description": "Table or view to query"
+            },
+            "x": {
+                "required": true,
+                "description": "Column for x-axis (often date/time)",
+                "suggestionType": "column"
+            },
+            "y": {
+                "required": true,
+                "description": "Column for y-axis (values to plot)",
+                "suggestionType": "column"
+            },
+            "agg": {
+                "required": false,
+                "description": "Aggregation to use (e.g., \"sum\", \"avg\", \"min\", \"max\", \"count\", \"count_distinct\")",
+                "matches": [
+                    "sum",
+                    "avg",
+                    "min",
+                    "max",
+                    "count",
+                    "count_distinct"
+                ]
+            },
+            "time_grain": {
+                "required": false,
+                "description": "Time grain for date columns (e.g., \"day\", \"week\", \"month\", \"quarter\", \"year\")",
+                "matches": [
+                    "day",
+                    "week",
+                    "month",
+                    "quarter",
+                    "year"
+                ]
+            },
+            "type": {
+                "required": false,
+                "default": "line",
+                "matches": [
+                    "line",
+                    "area",
+                    "bar"
+                ],
+                "description": "Type of sparkline to display"
+            },
+            "color": {
+                "required": false,
+                "description": "Color of the sparkline (CSS color)"
+            },
+            "y_fmt": {
+                "required": false,
+                "description": "Format for y-axis tooltip (e.g., \"num\", \"usd\", \"pct\")"
+            },
+            "x_fmt": {
+                "required": false,
+                "description": "Format for x-axis tooltip (e.g., \"shortdate\", \"longdate\")"
+            },
+            "y_scale": {
+                "required": false,
+                "default": false,
+                "description": "Whether to scale the y-axis to the data range"
+            },
+            "interactive": {
+                "required": false,
+                "default": true,
+                "description": "Whether the sparkline should be interactive"
+            },
+            "class_name": {
+                "required": false,
+                "description": "Additional CSS classes to apply"
+            },
+            "filters": {
+                "required": false,
+                "description": "IDs of filters to apply to the query",
+                "suggestionType": "filter"
+            },
+            "order": {
+                "required": false,
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "suggestionType": "column"
+            }
+        }
+    },
+    "stack": {
+        "render": "stack",
+        "description": "Stacks its children vertically",
+        "attributes": {},
+        "selfClosing": false,
+        "grid": {
+            "userCanChangeWidth": false,
+            "userCanChangeHeight": false,
+            "defaultWidth": "fit",
+            "defaultHeight": "fit"
+        }
+    },
+    "table": {
+        "render": "table",
+        "selfClosing": true,
+        "grid": {
+            "userCanChangeWidth": true,
+            "userCanChangeHeight": true,
+            "defaultWidth": 12,
+            "defaultHeight": 3
+        },
+        "attributes": {
+            "data": {
+                "required": true,
+                "suggestionType": "table"
+            },
+            "filters": {
+                "required": false,
+                "suggestionType": "filter"
+            },
+            "pageSize": {
+                "required": false,
+                "default": 10
+            },
+            "title": {
+                "required": false,
+                "description": "Title to display above the table"
+            },
+            "subtitle": {
+                "required": false,
+                "description": "Subtitle to display below the title"
+            },
+            "order": {
+                "required": false,
+                "description": "Column name(s) with optional direction (e.g. \"column_name\", \"column_name desc\")",
+                "suggestionType": "column"
+            },
+            "dimensions": {
+                "required": false,
+                "suggestionType": "column"
+            },
+            "measures": {
+                "required": false,
+                "suggestionType": "column"
+            },
+            "width": {
+                "required": false,
+                "default": 12,
+                "description": "Width (in columns) of the table on the page grid"
+            },
+            "height": {
+                "required": false,
+                "default": 3,
+                "description": "Height (in rows) of the table on the page grid"
+            }
+        }
+    },
+    "value": {
+        "render": "value",
+        "selfClosing": true,
+        "isInline": true,
+        "description": "Display a single value from a database query",
+        "attributes": {
+            "data": {
+                "required": true,
+                "suggestionType": "table",
+                "description": "Table or view to query"
+            },
+            "value": {
+                "required": true,
+                "description": "SQL expression to insert into the SELECT part of the query (e.g., \"COUNT(*)\", \"SUM(sales)\")",
+                "suggestionType": "column"
+            },
+            "className": {
+                "required": false,
+                "description": "CSS class to apply to the value"
+            },
+            "fmt": {
+                "required": false,
+                "description": "Format code for the value (e.g., \"num\", \"usd\", \"pct\"). See formatValue documentation for available formats."
+            }
+        }
+    }
+}
