@@ -1,0 +1,328 @@
+{
+    "area_chart": {
+        "selfClosing": true,
+        "description": "Display a area chart",
+        "required": [
+            "data [table]: Name of the table to query",
+            "x [column]: Column name for x-axis",
+            "y [column]: Column name for y-axis"
+        ],
+        "optional": [
+            "filters [filter]: Array of column names to use as filters",
+            "series [column]: Column name for series",
+            "size [column]: Column name for size",
+            "title: Title to display above the chart",
+            "subtitle: Subtitle to display below the title",
+            "x_label_wrap: Wrap x-axis labels",
+            "time_grain (day|week|month|quarter|year): Time grain for date truncation (default: day for date columns)",
+            "agg (sum|avg|mean|max|min|count|count_distinct): Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)",
+            "y_fmt: Format for y-axis values",
+            "x_fmt: Format for x-axis values",
+            "echarts_options: ECharts configuration options",
+            "renderer (canvas|svg): Renderer to use for the chart",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')",
+            "stretch: Stretches the chart area to fill all available space when a chart is placed next to a taller chart",
+            "width: Width (in columns) of the area_chart on the page grid",
+            "height: Height (in rows) of the area_chart on the page grid"
+        ]
+    },
+    "bar_chart": {
+        "selfClosing": true,
+        "description": "Display a bar chart",
+        "required": [
+            "data [table]: Name of the table to query",
+            "x [column]: Column name for x-axis",
+            "y [column]: Column name for y-axis"
+        ],
+        "optional": [
+            "filters [filter]: Array of column names to use as filters",
+            "series [column]: Column name for series",
+            "size [column]: Column name for size",
+            "title: Title to display above the chart",
+            "subtitle: Subtitle to display below the title",
+            "x_label_wrap: Wrap x-axis labels",
+            "time_grain (day|week|month|quarter|year): Time grain for date truncation (default: day for date columns)",
+            "agg (sum|avg|mean|max|min|count|count_distinct): Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)",
+            "y_fmt: Format for y-axis values",
+            "x_fmt: Format for x-axis values",
+            "echarts_options: ECharts configuration options",
+            "renderer (canvas|svg): Renderer to use for the chart",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')",
+            "stretch: Stretches the chart area to fill all available space when a chart is placed next to a taller chart",
+            "stacked: Whether to stack the bars",
+            "width: Width (in columns) of the bar_chart on the page grid",
+            "height: Height (in rows) of the bar_chart on the page grid"
+        ]
+    },
+    "bubble_chart": {
+        "selfClosing": true,
+        "description": "Display a bubble chart",
+        "required": [
+            "data [table]: Name of the table to query",
+            "x [column]: Column name for x-axis",
+            "y [column]: Column name for y-axis",
+            "size [column]: Column to use for the size of the bubbles"
+        ],
+        "optional": [
+            "filters [filter]: Array of column names to use as filters",
+            "series [column]: Column name for series",
+            "title: Title to display above the chart",
+            "subtitle: Subtitle to display below the title",
+            "x_label_wrap: Wrap x-axis labels",
+            "time_grain (day|week|month|quarter|year): Time grain for date truncation (default: day for date columns)",
+            "agg (sum|avg|mean|max|min|count|count_distinct): Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)",
+            "y_fmt: Format for y-axis values",
+            "x_fmt: Format for x-axis values",
+            "echarts_options: ECharts configuration options",
+            "renderer (canvas|svg): Renderer to use for the chart",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')",
+            "stretch: Stretches the chart area to fill all available space when a chart is placed next to a taller chart",
+            "opacity: The opacity of the series",
+            "width: Width (in columns) of the bubble_chart on the page grid",
+            "height: Height (in rows) of the bubble_chart on the page grid"
+        ]
+    },
+    "callout": {
+        "selfClosing": false,
+        "description": "",
+        "required": [],
+        "optional": [
+            "type (info|warning|error)",
+            "title",
+            "width: Width (in columns) of the callout on the page grid",
+            "height: Height (in rows) of the callout on the page grid"
+        ]
+    },
+    "chart": {
+        "selfClosing": true,
+        "description": "Display a chart",
+        "required": [
+            "data [table]: Name of the table to query",
+            "x [column]: Column name for x-axis",
+            "y [column]: Column name for y-axis"
+        ],
+        "optional": [
+            "filters [filter]: Array of column names to use as filters",
+            "series [column]: Column name for series",
+            "size [column]: Column name for size",
+            "title: Title to display above the chart",
+            "subtitle: Subtitle to display below the title",
+            "type (line|bar|area|scatter): Type of chart to display",
+            "x_label_wrap: Wrap x-axis labels",
+            "time_grain (day|week|month|quarter|year): Time grain for date truncation (default: day for date columns)",
+            "agg (sum|avg|mean|max|min|count|count_distinct): Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)",
+            "y_fmt: Format for y-axis values",
+            "x_fmt: Format for x-axis values",
+            "echarts_options: ECharts configuration options",
+            "renderer (canvas|svg): Renderer to use for the chart",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')",
+            "stretch: Stretches the chart area to fill all available space when a chart is placed next to a taller chart",
+            "width: Width (in columns) of the chart on the page grid",
+            "height: Height (in rows) of the chart on the page grid"
+        ]
+    },
+    "delta": {
+        "selfClosing": true,
+        "description": "Display a delta value with an up/down indicator",
+        "required": [
+            "data [table]: Table or view to query",
+            "value [column]: SQL expression to insert into the SELECT part of the query (e.g., 'COUNT(*)', 'SUM(sales)')"
+        ],
+        "optional": [
+            "className: CSS class to apply to the delta",
+            "fmt: Format code for the value (e.g., 'num', 'usd', 'pct'). See formatValue documentation for available formats.",
+            "text: Text appearing after the delta (e.g., vs. prev month)",
+            "chip: Whether to display as a chip",
+            "downIsGood: Whether a downward trend is considered positive",
+            "showValue: Whether to show the value",
+            "showSymbol: Whether to show the delta symbol",
+            "symbolPosition (left|right): Position of the delta symbol relative to the value",
+            "align (left|center|right): Text alignment",
+            "neutralMin: Minimum value to be considered neutral",
+            "neutralMax: Maximum value to be considered neutral",
+            "filters [filter]: IDs of filters to apply to the query"
+        ]
+    },
+    "dropdown": {
+        "selfClosing": false,
+        "description": "Display a dropdown with distinct values from a database column",
+        "required": [
+            "id: The id of the dropdown to be used in a `filters` prop"
+        ],
+        "optional": [
+            "data [table]: Name of the table to query",
+            "value_column [column]: Column name to use as the value for each option, and the column to filter by when this dropdown's `id` is used in the `filters` prop of a chart",
+            "label_column: Column name to use as the label for each option",
+            "options: List of options to display in the dropdown",
+            "title: Text displayed above the dropdown",
+            "initial_value: Initial selected value(s)",
+            "placeholder: Placeholder text displayed when no value is selected",
+            "search: Includes a search input within the dropdown menu",
+            "multiple: Allows multiple selections",
+            "clear: Includes a clear button to unselect the selected value(s)",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')",
+            "width: Width (in columns) of the dropdown on the page grid"
+        ]
+    },
+    "dropdown_option": {
+        "selfClosing": true,
+        "description": "Add an option to a dropdown component",
+        "required": [
+            "value: Value of the option"
+        ],
+        "optional": [
+            "label: Label text displayed in the option"
+        ]
+    },
+    "echarts": {
+        "selfClosing": true,
+        "description": "Display a custom chart using ECharts configuration options",
+        "required": [
+            "options: ECharts configuration options"
+        ],
+        "optional": [
+            "renderer (canvas|svg): Renderer to use for the chart",
+            "width: Width (in columns) of the echarts on the page grid",
+            "height: Height (in rows) of the echarts on the page grid"
+        ]
+    },
+    "filter_bar": {
+        "selfClosing": false,
+        "description": "Renders a floating bar of filters at the top or bottom of your page",
+        "required": [],
+        "optional": []
+    },
+    "info": {
+        "selfClosing": false,
+        "description": "Display a value with type-appropriate styling",
+        "required": [],
+        "optional": [
+            "className",
+            "width: Width (in columns) of the info on the page grid",
+            "height: Height (in rows) of the info on the page grid"
+        ]
+    },
+    "line_chart": {
+        "selfClosing": true,
+        "description": "Display a line chart",
+        "required": [
+            "data [table]: Name of the table to query",
+            "x [column]: Column name for x-axis",
+            "y [column]: Column name for y-axis"
+        ],
+        "optional": [
+            "filters [filter]: Array of column names to use as filters",
+            "series [column]: Column name for series",
+            "size [column]: Column name for size",
+            "title: Title to display above the chart",
+            "subtitle: Subtitle to display below the title",
+            "x_label_wrap: Wrap x-axis labels",
+            "time_grain (day|week|month|quarter|year): Time grain for date truncation (default: day for date columns)",
+            "agg (sum|avg|mean|max|min|count|count_distinct): Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)",
+            "y_fmt: Format for y-axis values",
+            "x_fmt: Format for x-axis values",
+            "echarts_options: ECharts configuration options",
+            "renderer (canvas|svg): Renderer to use for the chart",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')",
+            "stretch: Stretches the chart area to fill all available space when a chart is placed next to a taller chart",
+            "width: Width (in columns) of the line_chart on the page grid",
+            "height: Height (in rows) of the line_chart on the page grid"
+        ]
+    },
+    "repeat": {
+        "selfClosing": false,
+        "description": "Repeats the children of this component once for each distinct value of a column",
+        "required": [
+            "id: The id of this repeat component to be used in the `filters` prop of its children",
+            "data [table]: The name of the table to query",
+            "column [column]: The name of the column within the `data` table to get distinct values"
+        ],
+        "optional": []
+    },
+    "scatter_chart": {
+        "selfClosing": true,
+        "description": "Display a scatter chart",
+        "required": [
+            "data [table]: Name of the table to query",
+            "x [column]: Column name for x-axis",
+            "y [column]: Column name for y-axis"
+        ],
+        "optional": [
+            "filters [filter]: Array of column names to use as filters",
+            "series [column]: Column name for series",
+            "size [column]: Column name for size",
+            "title: Title to display above the chart",
+            "subtitle: Subtitle to display below the title",
+            "x_label_wrap: Wrap x-axis labels",
+            "time_grain (day|week|month|quarter|year): Time grain for date truncation (default: day for date columns)",
+            "agg (sum|avg|mean|max|min|count|count_distinct): Aggregation function for y-axis (default: sum for numeric columns, count for date and string columns)",
+            "y_fmt: Format for y-axis values",
+            "x_fmt: Format for x-axis values",
+            "echarts_options: ECharts configuration options",
+            "renderer (canvas|svg): Renderer to use for the chart",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')",
+            "stretch: Stretches the chart area to fill all available space when a chart is placed next to a taller chart",
+            "opacity: The opacity of the series",
+            "width: Width (in columns) of the scatter_chart on the page grid",
+            "height: Height (in rows) of the scatter_chart on the page grid"
+        ]
+    },
+    "sparkline": {
+        "selfClosing": true,
+        "description": "Display a small inline sparkline chart",
+        "required": [
+            "data [table]: Table or view to query",
+            "x [column]: Column for x-axis (often date/time)",
+            "y [column]: Column for y-axis (values to plot)"
+        ],
+        "optional": [
+            "agg (sum|avg|min|max|count|count_distinct): Aggregation to use (e.g., 'sum', 'avg', 'min', 'max', 'count', 'count_distinct')",
+            "time_grain (day|week|month|quarter|year): Time grain for date columns (e.g., 'day', 'week', 'month', 'quarter', 'year')",
+            "type (line|area|bar): Type of sparkline to display",
+            "color: Color of the sparkline (CSS color)",
+            "y_fmt: Format for y-axis tooltip (e.g., 'num', 'usd', 'pct')",
+            "x_fmt: Format for x-axis tooltip (e.g., 'shortdate', 'longdate')",
+            "y_scale: Whether to scale the y-axis to the data range",
+            "interactive: Whether the sparkline should be interactive",
+            "class_name: Additional CSS classes to apply",
+            "filters [filter]: IDs of filters to apply to the query",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')"
+        ]
+    },
+    "stack": {
+        "selfClosing": false,
+        "description": "Stacks its children vertically",
+        "required": [],
+        "optional": []
+    },
+    "table": {
+        "selfClosing": true,
+        "description": "",
+        "required": [
+            "data [table]"
+        ],
+        "optional": [
+            "filters [filter]",
+            "pageSize",
+            "title: Title to display above the table",
+            "subtitle: Subtitle to display below the title",
+            "order [column]: Column name(s) with optional direction (e.g. 'column_name', 'column_name desc')",
+            "dimensions [column]",
+            "measures [column]",
+            "width: Width (in columns) of the table on the page grid",
+            "height: Height (in rows) of the table on the page grid"
+        ]
+    },
+    "value": {
+        "selfClosing": true,
+        "description": "Display a single value from a database query",
+        "required": [
+            "data [table]: Table or view to query",
+            "value [column]: SQL expression to insert into the SELECT part of the query (e.g., 'COUNT(*)', 'SUM(sales)')"
+        ],
+        "optional": [
+            "className: CSS class to apply to the value",
+            "fmt: Format code for the value (e.g., 'num', 'usd', 'pct'). See formatValue documentation for available formats."
+        ]
+    }
+}
