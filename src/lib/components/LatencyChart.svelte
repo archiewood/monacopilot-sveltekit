@@ -80,7 +80,7 @@
 
 <div bind:this={chartElement} class="w-full h-[400px] bg-white rounded-lg shadow-sm"></div>
 
-<div class="mt-4 p-4 bg-gray-50 rounded-lg">
+<!-- <div class="mt-4 p-4 bg-gray-50 rounded-lg">
   <h3 class="text-sm font-mono mb-2">Chart Options:</h3>
   <pre class="text-xs overflow-auto">{JSON.stringify(currentOptions, null, 2)}</pre>
   <div class="mt-2 text-xs text-gray-500">
@@ -88,4 +88,4 @@
     Chart exists: {!!chart ? 'Yes' : 'No'}<br>
     Data points: {data.length}
   </div>
-</div> 
+</div>  -->
