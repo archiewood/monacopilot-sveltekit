@@ -33,11 +33,13 @@
     timestamp: Date;
   }>>([]);
 
-  let chartData = $derived(requestHistory.map(request => ({
-    contextSize: request.metrics.prefixLength + request.metrics.suffixLength,
-    latency: request.totalTime,
-    model: request.metrics.model
-  })));
+  let chartData = $derived(requestHistory
+    .filter(request => request.metrics.completionLength > 0)
+    .map(request => ({
+      contextSize: request.metrics.prefixLength + request.metrics.suffixLength,
+      latency: request.totalTime,
+      model: request.metrics.model
+    })));
 
   function handleCompletion(event: { promise: Promise<{ completion: string | null; timing: { totalServerTime: number; apiTime: number }; metrics: { prefixLength: number; suffixLength: number; completionLength: number; model: string } }> }) {
     const requestStart = Date.now();
