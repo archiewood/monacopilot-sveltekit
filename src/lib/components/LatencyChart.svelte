@@ -47,6 +47,11 @@
           data: models,
           top: 30
         },
+        grid: {
+          left: '55px',
+          bottom: '50px',
+          right: '20px'
+        },
         xAxis: {
           type: 'value',
           name: 'Context Size (chars)',
@@ -100,7 +105,7 @@
   });
 </script>
 
-<div bind:this={chartElement} class="w-full h-[400px] bg-white rounded-lg shadow-sm"></div>
+<div bind:this={chartElement} class="w-full h-[400px] border border-gray-200 p-2"></div>
 
 <!-- <div class="mt-4 p-4 bg-gray-50 rounded-lg">
   <h3 class="text-sm font-mono mb-2">Chart Options:</h3>
